@@ -1,0 +1,65 @@
+import nltk
+
+
+nltk.download('punkt')
+
+
+
+text = """The voice that navigated was definitely that of a machine, and yet you could tell that
+the machine was a woman, which hurt my mind a little. How can machines have genders? The
+machine also had an American accent. How can machines have nationalities? This can't be a
+good idea, making machines talk like real people, can it? Giving machines humanoid
+identities?"""
+
+
+
+from nltk.tokenize import sent_tokenize
+text_to_sentence = sent_tokenize(text)
+print(text_to_sentence)
+
+
+
+from nltk.tokenize import word_tokenize
+tokenized_word = word_tokenize(text)
+print(tokenized_word)
+
+
+
+from nltk.probability import FreqDist
+freq_dist_of_words = FreqDist(tokenized_word)
+print(freq_dist_of_words)
+freq_dist_of_words.most_common(5)
+
+
+
+import matplotlib.pyplot as plt
+freq_dist_of_words.plot(30,cumulative=False)
+plt.show()
+
+
+
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+stop_words=set(stopwords.words("english"))
+print(stop_words)
+
+
+
+text = 'Learn to lose your destiny to find where it leads you'
+filtered_text = []
+tokenized_word = word_tokenize(text)
+for each_word in tokenized_word:
+    if each_word not in stop_words:
+        filtered_text.append(each_word)
+        print('Toxenized list with stop words: {}'.format(tokenized_word))
+        print('Toxenized list with out stop words:{}'.format(filtered_text))
+
+
+
+nltk.download('universal_tagset')
+text = "I'm going to meet M.S. Dhoni."
+tokenized_word = word_tokenize(text)
+nltk.pos_tag(tokenized_word, tagset='universal')
+text = "I'm going to meet M.S. Dhoni."
+tokenized_word = word_tokenize(text)
+nltk.pos_tag(tokenized_word, tagset='universal')
